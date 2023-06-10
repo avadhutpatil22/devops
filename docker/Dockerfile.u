@@ -13,9 +13,9 @@ CMD apachectl -D FOREGROUND
 
 #Dockerfile-2
 #FROM ubuntu:14.04
-#LABEL name="learning-ocean"
-#LABEL email="admin@learning-ocean.com"
-#ENV NAME Gaurav
+#LABEL name="app"
+#LABEL email="avadhoot22@gmail.com"
+#ENV NAME avadhoot
 #ENV PASS password
 #RUN pwd > /tmp/1stpwd.txt
 #RUN cd /tmp
