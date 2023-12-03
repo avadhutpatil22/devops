@@ -1,0 +1,31 @@
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - checkout: self
+    fetchDepth: 1
+  - task: Npm@1
+    displayName: npm install
+    inputs:
+      verbose: false
+  - task: Npm@1
+    displayName: npm build
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: run build
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+    inputs:
+      PathtoPublish: build
+  - task: AzureRmWebAppDeployment@4
+    displayName: 'Azure App Service Deploy: youtubeclone2'
+    inputs:
+      ConnectedServiceName: 22d09644-d47d-4c75-9c22-3e4d076a6360
+      WebAppKind: webAppLinux
+      WebAppName: youtubeclone2
+      Package: $(System.DefaultWorkingDirectory)/build
+      RuntimeStack: STATICSITE|1.0
+...
